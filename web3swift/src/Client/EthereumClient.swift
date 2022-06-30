@@ -87,8 +87,8 @@ public class EthereumClient: EthereumClientProtocol {
     public let url: URL
     private var retreivedNetwork: EthereumNetwork?
 
-    private let networkQueue: OperationQueue
-    private let concurrentQueue: OperationQueue
+    let networkQueue: OperationQueue
+    let concurrentQueue: OperationQueue
 
     public let session: URLSession
 
