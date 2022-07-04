@@ -10,12 +10,12 @@ import NIOWebSocket
 import FoundationNetworking
 #endif
 
-internal protocol NetworkProviderProtocol {
+public protocol NetworkProviderProtocol {
     var session: URLSession { get }
     func send<T, P: Encodable, U: Decodable>(method: String, params: P, receive: U.Type, completionHandler: @escaping (Result<T, EthereumClientError>) -> Void, resultDecodeHandler: @escaping (Result<Any, Error>) -> Void)
 }
 
-internal protocol WebSocketNetworkProviderProtocol: NetworkProviderProtocol {
+public protocol WebSocketNetworkProviderProtocol: NetworkProviderProtocol {
     var delegate: EthereumWebSocketClientDelegate? { get set }
     var onReconnectCallback: (() -> Void)? { get set }
     var currentState: WebSocketState { get }

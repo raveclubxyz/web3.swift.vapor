@@ -26,4 +26,20 @@ public class EthereumHttpClient: BaseEthereumClient {
         let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: networkQueue)
         super.init(networkProvider: HttpNetworkProvider(session: session, url: url), url: url, logger: logger, network: network)
     }
+    
+    public init(url: URL,
+                networkProvider: NetworkProviderProtocol,
+                logger: Logger? = nil,
+                network: EthereumNetwork? = nil) {
+        let networkQueue = OperationQueue()
+        networkQueue.name = "web3swift.client.networkQueue"
+        networkQueue.qualityOfService = .background
+        networkQueue.maxConcurrentOperationCount = 4
+        self.networkQueue = networkQueue
+        
+        super.init(networkProvider: networkProvider,
+                   url: url,
+                   logger: logger,
+                   network: network)
+    }
 }
